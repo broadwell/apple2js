@@ -10,6 +10,11 @@ disk_index = [
     "category": "Blank"
   },
   {
+    "filename": "json/disks/lisa25.json",
+    "name": "LISA",
+    "category": "Programming"
+  },
+  {
     "filename": "json/disks/dos33master.json",
     "name": "DOS 3.3 Master",
     "category": "System"
@@ -22,6 +27,11 @@ disk_index = [
   {
     "filename": "json/disks/audit.json",
     "name": "Apple II Audit",
+    "category": "Utility"
+  },
+  {
+    "filename": "json/disks/gridmaster.json",
+    "name": "Gridmaster",
     "category": "Utility"
   }
 ];

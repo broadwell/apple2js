@@ -1,3 +1,5 @@
+import { State as Apple2State } from './apple2';
+import { base64_json_parse } from './base64';
 import Apple2IO from './apple2io';
 import {
     HiresPage,
@@ -90,6 +92,16 @@ export class Apple2 implements Restorable<State>, DebuggerContainer {
         this.ready = this.init(options);
     }
 
+    async loadGridmasterSnapshot() {
+
+        const gridmasterFile = await fetch('json/snapshots/gridmaster_start.json');
+        const gridmasterData = await gridmasterFile.text();
+        const gridmasterState = await base64_json_parse(gridmasterData) as Apple2State;
+
+        this.setState(gridmasterState);
+
+    }
+
     async init(options: Apple2Options) {
         const romImportPromise = import(`./roms/system/${options.rom}`) as Promise<{ default: new () => ROM }>;
         const characterRomImportPromise = import(`./roms/character/${options.characterRom}`) as Promise<{ default: ReadonlyUint8Array }>;
@@ -139,6 +151,7 @@ export class Apple2 implements Restorable<State>, DebuggerContainer {
             this.cpu.addPageHandler(this.io);
             this.cpu.addPageHandler(this.rom);
         }
+
     }
 
     /**
@@ -203,6 +216,8 @@ export class Apple2 implements Restorable<State>, DebuggerContainer {
         } else {
             this.runTimer = window.setInterval(runFn, interval);
         }
+
+        this.loadGridmasterSnapshot();
     }
 
     stop() {

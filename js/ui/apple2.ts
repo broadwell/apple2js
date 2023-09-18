@@ -899,6 +899,25 @@ function onLoaded(
     keyboard.setFunction('F6', () => {
         window.localStorage.setItem('state', base64_json_stringify(_apple2.getState()));
     });
+
+    keyboard.setFunction('F8', () => {
+        const localState = window.localStorage.getItem('state');
+        if (localState) {
+            const filename = 'state.json';
+
+            let element = document.createElement('a');
+            element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(localState));
+            element.setAttribute('download', filename);
+
+            element.style.display = 'none';
+            document.body.appendChild(element);
+
+            element.click();
+
+            document.body.removeChild(element);
+        }
+    });
+
     keyboard.setFunction('F9', () => {
         const localState = window.localStorage.getItem('state');
         if (localState) {
