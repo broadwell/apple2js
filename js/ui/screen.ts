@@ -52,12 +52,12 @@ export class Screen implements OptionHandler {
                         type: BOOLEAN_OPTION,
                         defaultVal: false,
                     },
-                    {
-                        name: SCREEN_FULL_PAGE,
-                        label: 'Full Page',
-                        type: BOOLEAN_OPTION,
-                        defaultVal: false,
-                    },
+                    // {
+                    //     name: SCREEN_FULL_PAGE,
+                    //     label: 'Full Page',
+                    //     type: BOOLEAN_OPTION,
+                    //     defaultVal: false,
+                    // },
                     {
                         name: SCREEN_GL,
                         label: 'GL Renderer *',

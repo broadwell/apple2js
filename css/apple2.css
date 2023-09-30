@@ -1,15 +1,7 @@
-
-#main {
-    display: inline-flex;
-}
-
 #emulator {
-    flex: 1;
-    margin: 0px 0px 0px 20px;
-    background-color: #c4c1a0; /* Pantone 453 */
-    padding: 10px 10px 10px 10px;
-    border: 3px inset #f0edd0;
-    border-radius: 5px;
+    --scale: 1;
+    transform: scale(var(--scale));
+    transform-origin: top center;
 }
 
 #explanation {
@@ -17,14 +9,6 @@
     margin: 0px 20px;
     padding: 0px 10px;
     min-width: 40vw;
-    border: 2px dotted red;
-}
-
-#supplemental {
-    margin: 20px 20px;
-    min-height: 30vh;
-    padding: 1px 10px;
-    border: 2px dotted red;
 }
 
 #header {
@@ -77,6 +61,7 @@ body {
     margin: 16px 0;
     font-size: 14px;
     font-family: sans-serif;
+    background-color: #c4c1a0; /* Pantone 453 */
 }
 
 section {
@@ -87,7 +72,10 @@ section {
 
 .outer {
     margin: auto;
+    padding: 10px 10px 10px 10px;
     width: 620px;
+    border: 3px inset #f0edd0;
+    border-radius: 5px;
 }
 
 #display {

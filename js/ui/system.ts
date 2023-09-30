@@ -48,30 +48,30 @@ export class System implements OptionHandler {
                                 value: 'apple2plus',
                                 name: 'Apple ][+'
                             },
-                            {
-                                value: 'apple2',
-                                name: 'Autostart Apple ]['
-                            },
-                            {
-                                value: 'apple213',
-                                name: '13 Sector Apple ]['
-                            },
-                            {
-                                value: 'original',
-                                name: 'Apple ]['
-                            },
-                            {
-                                value: 'apple2j',
-                                name: 'Apple ][j+'
-                            },
-                            {
-                                value: 'apple2lc',
-                                name: 'Apple ][+ (lowercase font)'
-                            },
-                            {
-                                value: 'apple2pig',
-                                name: 'Apple ][+ (pig font)'
-                            },
+                            // {
+                            //     value: 'apple2',
+                            //     name: 'Autostart Apple ]['
+                            // },
+                            // {
+                            //     value: 'apple213',
+                            //     name: '13 Sector Apple ]['
+                            // },
+                            // {
+                            //     value: 'original',
+                            //     name: 'Apple ]['
+                            // },
+                            // {
+                            //     value: 'apple2j',
+                            //     name: 'Apple ][j+'
+                            // },
+                            // {
+                            //     value: 'apple2lc',
+                            //     name: 'Apple ][+ (lowercase font)'
+                            // },
+                            // {
+                            //     value: 'apple2pig',
+                            //     name: 'Apple ][+ (pig font)'
+                            // },
                         ]
                     },
                 ]

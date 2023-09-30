@@ -34,7 +34,7 @@ import Printer from './printer';
 
 import { OptionsModal } from './options_modal';
 import { Screen, SCREEN_FULL_PAGE } from './screen';
-import { JoyStick } from './joystick';
+// import { JoyStick } from './joystick';
 import { System } from './system';
 import { Options } from '../options';
 
@@ -64,6 +64,8 @@ const KNOWN_FILE_TYPES = [
     ...BIN_TYPES,
 ] as readonly string[];
 
+const EMULATOR_PAGE_HEIGHT = 0.9;
+
 const disk_categories: DiskCollection = { 'Local Saves': [] };
 const disk_sets: DiskCollection = {};
 // Disk names
@@ -81,7 +83,7 @@ let _massStorage: MassStorage<BlockFormat>;
 let _printer: Printer;
 let audio: Audio;
 let screen: Screen;
-let joystick: JoyStick;
+// let joystick: JoyStick;
 let system: System;
 let keyboard: KeyBoard;
 let io: Apple2IO;
@@ -529,9 +531,12 @@ export function toggleShowFPS() {
 export function toggleSound() {
     const on = !audio.isEnabled();
     options.setOption(SOUND_ENABLED_OPTION, on);
-    updateSoundButton(on);
+    //updateSoundButton(on);
 }
 
+// PMB - the sound toggle button is removed for Gridmaster, but the setting is
+// still accessible via the options menu.
+/*
 function initSoundToggle() {
     updateSoundButton(audio.isEnabled());
 }
@@ -546,6 +551,7 @@ function updateSoundButton(on: boolean) {
         label.classList.add('fa-volume-off');
     }
 }
+*/
 
 function dumpDisk(driveNo: DriveNumber) {
     const wind = window.open('', '_blank')!;
@@ -847,6 +853,33 @@ function hup() {
         return results[1];
 }
 
+function resizeEmulator() {
+
+    const emulator = document.querySelector<HTMLDivElement>('#emulator');
+
+    if (emulator) {
+        console.log(emulator.clientHeight, window.innerHeight);
+
+        const targetHeight = window.innerHeight * EMULATOR_PAGE_HEIGHT;
+        const emulatorScale = targetHeight / emulator.clientHeight;
+
+        //const windowHeight = window.innerHeight;
+
+        emulator.style.setProperty('--scale', `${emulatorScale}`);
+
+        console.log(emulator.style);
+
+        const bottomAdjust = Math.min(0, targetHeight - emulator.clientHeight);
+        console.log(bottomAdjust);
+
+        emulator.style.setProperty('margin-bottom', `${bottomAdjust}px`);
+
+        // const explanation = document.querySelector<HTMLDivElement>('#explanation');
+        // explanation?.style.setProperty('margin-top', `${bottomAdjust}px`);
+    }
+
+}
+
 function onLoaded(
     apple2: Apple2,
     disk2: DiskII,
@@ -867,15 +900,17 @@ function onLoaded(
     system = new System(io, e);
     options.addOptions(system);
 
-    joystick = new JoyStick(io);
-    options.addOptions(joystick);
+    // PMB No games, only glyphs
+    // joystick = new JoyStick(io);
+    // options.addOptions(joystick);
 
     screen = new Screen(vm);
     options.addOptions(screen);
 
+    // PMB
     audio = new Audio(io);
     options.addOptions(audio);
-    initSoundToggle();
+    // initSoundToggle();
 
     ready = Promise.all([audio.ready, apple2.ready]);
 
@@ -971,7 +1006,8 @@ function onLoaded(
     }
 
     cpu.reset();
-    setInterval(updateKHz, 1000);
+    // PMB Disabled for Gridmaster (clock removed from display)
+    // setInterval(updateKHz, 1000);
     initGamepad();
 
     // Check for disks in hashtag
@@ -1001,6 +1037,11 @@ function onLoaded(
             }
         }
     );
+
+    window.addEventListener('resize', () => {
+        resizeEmulator();
+    });
+    resizeEmulator();
 }
 
 export function initUI(
