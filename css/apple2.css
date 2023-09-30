@@ -1,3 +1,31 @@
+@font-face {
+    font-family: 'Motter Tektura';
+    src: url('fonts/MotterTekturaNormal.ttf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Myriad Pro';
+    src: url('fonts/MyriadProRegular.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Myriad Pro Semibold';
+    src: url('fonts/MyriadProSemiBold.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Garamond Pro';
+    src: url('fonts/AGaramondPro-Regular.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 #emulator {
     --scale: 1;
     transform: scale(var(--scale));
@@ -5,10 +33,27 @@
 }
 
 #explanation {
-    flex: 1;
-    margin: 0px 20px;
-    padding: 0px 10px;
+    margin: 0px 5vw;
+    padding: 5px 0px;
     min-width: 40vw;
+}
+
+#explanation > div > h2 {
+    font-family: "Myriad Pro";
+    font-size: 24pt;
+    margin-bottom: 0px;
+}
+
+#explanation > div > p {
+    font-family: "Garamond Pro",Garamond,Times;
+    font-size: 14pt;
+    margin-top: 0px;
+}
+
+#explanation > div > ul {
+    font-family: "Garamond Pro",Garamond,Times;
+    font-size: 14pt;
+    margin-top: 0px;
 }
 
 #header {
@@ -17,12 +62,6 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-}
-
-@media screen and (max-width: 1000px) {
-    #main {
-        display: inline;
-    }
 }
 
 img {

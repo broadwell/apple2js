@@ -858,24 +858,12 @@ function resizeEmulator() {
     const emulator = document.querySelector<HTMLDivElement>('#emulator');
 
     if (emulator) {
-        console.log(emulator.clientHeight, window.innerHeight);
-
-        const targetHeight = window.innerHeight * EMULATOR_PAGE_HEIGHT;
+        const targetHeight = Math.min(window.innerHeight * EMULATOR_PAGE_HEIGHT, emulator.clientHeight);
         const emulatorScale = targetHeight / emulator.clientHeight;
-
-        //const windowHeight = window.innerHeight;
-
         emulator.style.setProperty('--scale', `${emulatorScale}`);
 
-        console.log(emulator.style);
-
-        const bottomAdjust = Math.min(0, targetHeight - emulator.clientHeight);
-        console.log(bottomAdjust);
-
+        const bottomAdjust = targetHeight - emulator.clientHeight;
         emulator.style.setProperty('margin-bottom', `${bottomAdjust}px`);
-
-        // const explanation = document.querySelector<HTMLDivElement>('#explanation');
-        // explanation?.style.setProperty('margin-top', `${bottomAdjust}px`);
     }
 
 }
@@ -1008,7 +996,7 @@ function onLoaded(
     cpu.reset();
     // PMB Disabled for Gridmaster (clock removed from display)
     // setInterval(updateKHz, 1000);
-    initGamepad();
+    // initGamepad();
 
     // Check for disks in hashtag
 
