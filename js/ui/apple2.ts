@@ -152,7 +152,6 @@ export function openAlert(msg: string) {
 }
 
 export function openImage(imageFilename: string) {
-    console.log("Opening image at", imageFilename);
     const thumbUrl = `images/thumbs/${imageFilename}`;
     const imageUrl = thumbUrl.replace('thumbs/', '');
     const figureElt = document.querySelector<HTMLElement>(`figure.thumbnail-figure img[src='${thumbUrl}']`)?.parentElement;
