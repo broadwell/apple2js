@@ -11,7 +11,7 @@ export class System implements OptionHandler {
     getOptions() {
         return [
             {
-                name: 'Type',
+                name: 'Emulator type',
                 options: this.e ? [
                     {
                         name: SYSTEM_TYPE_APPLE2E,

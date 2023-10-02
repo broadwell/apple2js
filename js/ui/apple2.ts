@@ -151,6 +151,23 @@ export function openAlert(msg: string) {
     MicroModal.show('alert-modal');
 }
 
+export function openImage(imageFilename: string) {
+    console.log("Opening image at", imageFilename);
+    const thumbUrl = `images/thumbs/${imageFilename}`;
+    const imageUrl = thumbUrl.replace('thumbs/', '');
+    const figureElt = document.querySelector<HTMLElement>(`figure.thumbnail-figure img[src='${thumbUrl}']`)?.parentElement;
+    const caption = figureElt?.querySelector<HTMLImageElement>('img')?.getAttribute('alt') || "";
+    const title = figureElt?.querySelector<HTMLElement>('figcaption')?.textContent || "Image";
+    const titleElt = document.querySelector<HTMLDivElement>('#image-modal .modal__title')!;
+    titleElt.innerText = title;
+    const imageElt = document.querySelector<HTMLImageElement>('#image-modal .modal-image-fullsize')!;
+    imageElt.alt = title;
+    imageElt.src = imageUrl;
+    const captionElt = document.querySelector<HTMLDivElement>('#image-modal .modal-image-caption')!;
+    captionElt.innerText = caption;
+    MicroModal.show('image-modal');
+}
+
 /********************************************************************
  *
  * Drag and Drop
