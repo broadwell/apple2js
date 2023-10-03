@@ -34,8 +34,8 @@
 
 #explanation {
     margin: 0px 5vw;
-    padding: 5px 0px;
     min-width: 40vw;
+    max-width: 90vw;
 }
 
 #explanation > div > h2 {
@@ -73,6 +73,7 @@ img {
     display: flex;
     margin-top: 0px;
     padding-top: 0px;
+    flex-wrap: wrap;
 }
 
 .modal-image-caption {

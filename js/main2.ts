@@ -2,6 +2,7 @@ import Prefs from './prefs';
 
 import { driveLights, initUI, updateUI } from './ui/apple2';
 import Printer from './ui/printer';
+import { SCREEN_GL } from './ui/screen';
 
 import DiskII from './cards/disk2';
 import LanguageCard from './cards/langcard';
@@ -51,7 +52,7 @@ switch (romVersion) {
         characterRom = 'apple2_char';
 }
 
-const options = {
+let options = {
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     canvas: document.querySelector<HTMLCanvasElement>('#screen')!,
     gl: prefs.readPref('gl_canvas', 'true') === 'true',
@@ -61,6 +62,17 @@ const options = {
     enhanced: false,
     tick: updateUI
 };
+
+// PMB Try to sniff for WebGL API and floating-point texture support
+// (some mobile browsers apparently can't do one or both)
+if (options.gl) {
+    const gl = options.canvas.getContext("webgl");
+    if (!gl || !gl.getExtension("OES_texture_float")) {
+        console.log("GL support not found");
+        options.gl = false;
+        prefs.writePref(SCREEN_GL, 'false');
+    }
+}
 
 export const apple2 = new Apple2(options);
 apple2.ready.then(() => {
